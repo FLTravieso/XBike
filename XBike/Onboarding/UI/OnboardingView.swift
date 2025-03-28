@@ -12,7 +12,9 @@ struct OnboardingView: View {
 
     var body: some View {
         TabView() {
-            
+            ForEach(viewModel.steps, id: \.self) { step in
+                OnboardingStepView(step: step)
+            }
         }
         .tabViewStyle(.page)
         .background(.orange)
