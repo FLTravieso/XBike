@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    let viewModel: OnboardingViewModel
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView() {
+            
+        }
+        .tabViewStyle(.page)
+        .background(.orange)
     }
 }
 
 #Preview {
-    OnboardingView()
+    OnboardingView(viewModel: OnboardingViewModel())
 }
