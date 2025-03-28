@@ -10,9 +10,15 @@ import SwiftData
 
 @main
 struct XBikeApp: App {
+    @StateObject private var appSettings = AppSettings()
+
     var body: some Scene {
         WindowGroup {
-            OnboardingView(viewModel: OnboardingViewModel())
+            if appSettings.shouldShowOnboarding
+            {
+                OnboardingView(viewModel: OnboardingViewModel())
+                    .environmentObject(appSettings)
+            }
         }
     }
 }

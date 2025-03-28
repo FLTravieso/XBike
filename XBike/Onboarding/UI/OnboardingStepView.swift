@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingStepView: View {
+    @EnvironmentObject var appSettings: AppSettings
     let step: OnboardingStep
 
     var body: some View {
@@ -29,7 +30,7 @@ struct OnboardingStepView: View {
             Spacer()
 
             Button(step.buttonTitle ?? "") {
-                // Finish onboarding
+                appSettings.shouldShowOnboarding = false
             }
             .padding(20)
             .foregroundStyle(.white)
