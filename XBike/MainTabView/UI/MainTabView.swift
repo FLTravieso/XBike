@@ -25,7 +25,7 @@ struct MainTabView: View {
         TabView {
             Text("Tab 1")
                 .tabItem {
-                    Image(systemName: "bike")
+                    Image(systemName: "bicycle")
                     Text("Current Ride")
                 }
 
