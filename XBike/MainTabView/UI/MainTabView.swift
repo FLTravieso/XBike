@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct MainTabView: View {
-    init() {
+    private let createCurrentRideTabView: CreateCurrentRideTab
+
+    init(createCurrentRideTabView: CreateCurrentRideTab) {
+        self.createCurrentRideTabView = createCurrentRideTabView
+
+        //Appearance
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.orange
@@ -23,7 +28,7 @@ struct MainTabView: View {
 
     var body: some View {
         TabView {
-            CurrentRideTabView()
+            createCurrentRideTabView.create()
                 .tabItem {
                     Image(systemName: "bicycle")
                     Text("Current Ride")
