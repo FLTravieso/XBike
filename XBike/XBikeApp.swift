@@ -19,6 +19,10 @@ struct XBikeApp: App {
                 OnboardingView(viewModel: OnboardingViewModel())
                     .environmentObject(appSettings)
             }
+            else
+            {
+                MainTabView()
+            }
         }
     }
 }
