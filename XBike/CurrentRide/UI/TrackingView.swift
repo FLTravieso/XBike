@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TrackingView: View {
+    @Binding var viewModel: CurrentRideViewModel
+
     var body: some View {
         VStack {
             Spacer()
@@ -41,7 +43,7 @@ struct TrackingView: View {
     }
 
     @ViewBuilder private var timer: some View {
-        Text("00 : 00 : 00")
+        Text(viewModel.formattedTime)
             .foregroundStyle(.black)
             .font(.largeTitle)
             .padding(.top, 16)
@@ -58,17 +60,18 @@ struct TrackingView: View {
 
     @ViewBuilder private var startButton: some View {
         Button("Start") {
-            //Start tracking
+            viewModel.startTimer()
         }
-        .foregroundStyle(.orange)
+        .foregroundStyle(viewModel.isRunning ? .gray: .orange)
         .font(.title2)
+        .disabled(viewModel.isRunning)
     }
 
     @ViewBuilder private var stopButton: some View {
         Button("Stop") {
-            //Stop tracking
+            viewModel.stopTimer()
         }
-        .foregroundStyle(.gray)
+        .foregroundStyle(viewModel.isRunning ? .orange: .gray)
         .font(.title2)
     }
 }

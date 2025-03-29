@@ -22,7 +22,7 @@ struct CurrentRideTabView:View {
                 MapView()
 
                 if showTrackingView {
-                    TrackingView()
+                    TrackingView(viewModel: $viewModel)
                 }
             }
             .navigationTitle("Current Ride")
