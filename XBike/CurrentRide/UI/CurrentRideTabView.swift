@@ -14,6 +14,8 @@ struct CurrentRideTabView:View {
         NavigationStack {
             ZStack {
                 MapView()
+
+                TrackingView()
             }
             .navigationTitle("Current Ride")
             .navigationBarTitleDisplayMode(.inline)
