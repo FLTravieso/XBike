@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct CurrentRideTabView:View {
-    @State private var enableAddButton = true
+    @State private var showTrackingView = false
 
     var body: some View {
         NavigationStack {
             ZStack {
                 MapView()
+
+                if showTrackingView {
+                    TrackingView()
+                }
             }
             .navigationTitle("Current Ride")
             .navigationBarTitleDisplayMode(.inline)
@@ -21,9 +25,11 @@ struct CurrentRideTabView:View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
                         //Show/hide start and stop tracking view
-                        enableAddButton.toggle()
+                        withAnimation {
+                            showTrackingView.toggle()
+                        }
                     }) {
-                        Image(systemName: enableAddButton ? "plus" : "xmark")
+                        Image(systemName: showTrackingView ? "xmark" : "plus")
                     }
                     .foregroundStyle(.white)
                 }
