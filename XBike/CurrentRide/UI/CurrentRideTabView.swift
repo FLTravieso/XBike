@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct CurrentRideTabView:View {
-    @State private var showTrackingView = false
+    @State private var showTrackingView: Bool
+    @State private var viewModel: CurrentRideViewModel
+
+    init(viewModel: CurrentRideViewModel) {
+        self.showTrackingView = false
+        self.viewModel = viewModel
+    }
 
     var body: some View {
         NavigationStack {
