@@ -10,7 +10,6 @@ import Foundation
 class TimerManager: TimerUseCase {
     var isRunning: Bool = false
     private var startTime: Date?
-    private var timer: Timer?
     private var elapsedTime: TimeInterval = 0
 
     func start() {

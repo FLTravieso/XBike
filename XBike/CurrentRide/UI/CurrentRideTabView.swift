@@ -19,7 +19,7 @@ struct CurrentRideTabView:View {
     var body: some View {
         NavigationStack {
             ZStack {
-                MapView()
+                MapView(userLocation: $viewModel.userLocation, userPath: $viewModel.pathCoordinates)
 
                 if showTrackingView {
                     TrackingView(viewModel: $viewModel)

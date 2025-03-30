@@ -14,9 +14,22 @@
 		8ED092492D9754AB00129E0F /* XBike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XBike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8ED660932D999731004A1FCB /* Exceptions for "XBike" folder in "XBike" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8ED092482D9754AB00129E0F /* XBike */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8ED0924B2D9754AB00129E0F /* XBike */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8ED660932D999731004A1FCB /* Exceptions for "XBike" folder in "XBike" target */,
+			);
 			path = XBike;
 			sourceTree = "<group>";
 		};
@@ -264,6 +277,10 @@
 				DEVELOPMENT_TEAM = P9225KGPYB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = XBike/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Your location is used to track your rides";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Your location is used to track your rides";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is used to track your rides";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -293,6 +310,10 @@
 				DEVELOPMENT_TEAM = P9225KGPYB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = XBike/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Your location is used to track your rides";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Your location is used to track your rides";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is used to track your rides";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
