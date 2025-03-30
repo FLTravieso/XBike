@@ -57,6 +57,10 @@ class CurrentRideViewModel {
         rideFinished = true
     }
 
+    func saveRide() {
+        rideTracker.saveRide()
+    }
+
     func deleteRide() {
         resetTimer()
         rideTracker.resetRide()

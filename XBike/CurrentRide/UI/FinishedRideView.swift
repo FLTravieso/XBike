@@ -84,7 +84,7 @@ struct FinishedRideView: View {
 
     @ViewBuilder private var storeButton: some View {
         Button("Store") {
-            // Store ride
+            viewModel.saveRide()
         }
         .foregroundStyle(.orange)
         .font(.title2)
