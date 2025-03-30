@@ -24,6 +24,10 @@ struct CurrentRideTabView:View {
                 if showTrackingView {
                     TrackingView(viewModel: $viewModel)
                 }
+
+                if viewModel.rideFinished {
+                    FinishedRideView(viewModel: $viewModel)
+                }
             }
             .navigationTitle("Current Ride")
             .navigationBarTitleDisplayMode(.inline)

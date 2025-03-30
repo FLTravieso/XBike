@@ -67,7 +67,7 @@ struct FinishedRideView: View {
             .font(.title)
             .padding(.top, 2)
 
-        Text("10.0 km")
+        Text(viewModel.formattedDistance)
             .foregroundStyle(.black)
             .font(.largeTitle)
             .padding(.top, 2)
