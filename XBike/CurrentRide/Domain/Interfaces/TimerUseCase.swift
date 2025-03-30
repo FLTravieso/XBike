@@ -11,7 +11,7 @@ protocol TimerUseCase {
     func start()
     func stop()
     func reset()
-    func getElapsedTime() -> String
+    func getElapsedTime() -> TimeInterval
 
     var isRunning: Bool { get set }
 }
