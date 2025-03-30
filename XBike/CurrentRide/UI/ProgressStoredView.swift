@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProgressStoredView: View {
+    @Binding var rideStoredSuccessfully: Bool
+
     var body: some View {
         VStack {
             Spacer()
@@ -19,7 +21,7 @@ struct ProgressStoredView: View {
                     .padding(40)
 
                 Button("OK") {
-                    
+                    rideStoredSuccessfully = false
                 }
                 .font(.title2)
                 .foregroundStyle(.gray)
