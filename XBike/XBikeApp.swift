@@ -28,7 +28,8 @@ struct XBikeApp: App {
             }
             else
             {
-                MainTabView(createCurrentRideTabView: CurrentRideTabFactory())
+                MainTabView(createCurrentRideTabView: CurrentRideTabFactory(),
+                            createMyProgressTabView: MyProgressTabFactory())
             }
         }
     }
