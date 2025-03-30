@@ -12,6 +12,7 @@ class CurrentRideTabFactory: CreateCurrentRideTab {
 
     private func createViewModel() -> CurrentRideViewModel {
         CurrentRideViewModel(timerUseCase: TimerManager(),
-                             locationTracker: LocationTrackerService())
+                             locationTracker: LocationTrackerService(),
+                             rideTracker: RideTracker())
     }
 }
