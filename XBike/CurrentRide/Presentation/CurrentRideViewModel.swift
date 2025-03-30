@@ -47,6 +47,8 @@ class CurrentRideViewModel {
     func stopRide() {
         stopTimer()
         stopTracking()
+        rideTracker.endRide(at: CLLocation(latitude: userLocation.latitude,
+                                           longitude: userLocation.longitude))
     }
 
     private func resetTimer() {
@@ -90,6 +92,7 @@ class CurrentRideViewModel {
 
                 self.userLocation = location.coordinate
                 if isRunning {
+                    self.rideTracker.didMoveTo(point: location)
                     self.pathCoordinates.add(location.coordinate)
                 }
             }
