@@ -9,7 +9,7 @@ import CoreLocation
 import Combine
 
 @Observable
-class LocationTrackerService: NSObject, LocationTrackerProtocol, CLLocationManagerDelegate {
+class LocationTrackerService: NSObject, LocationTrackerProtocol {
     private let locationManager = CLLocationManager()
     private let locationSubject = PassthroughSubject<CLLocation, Never>()
 
@@ -31,7 +31,9 @@ class LocationTrackerService: NSObject, LocationTrackerProtocol, CLLocationManag
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
     }
+}
 
+extension LocationTrackerService: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             locationSubject.send(location)

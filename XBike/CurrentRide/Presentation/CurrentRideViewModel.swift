@@ -9,13 +9,15 @@ import Foundation
 import SwiftUI
 import Combine
 import CoreLocation
+import GoogleMaps
 
 @Observable
 class CurrentRideViewModel {
     var formattedTime: String = "00 : 00 : 00"
     var isRunning = false
-    var userLocation: CLLocation?
-    var pathCoordinates: [CLLocationCoordinate2D] = []
+    var userLocation = CLLocationCoordinate2D(latitude: Constants.Map.defaultLatitude,
+                                              longitude: Constants.Map.defaultLongitude)
+    var pathCoordinates = GMSMutablePath()
 
     private let timerUseCase: TimerUseCase
     private var timer: Timer?
@@ -77,8 +79,8 @@ class CurrentRideViewModel {
                     return
                 }
 
-                self.userLocation = location
-                self.pathCoordinates.append(location.coordinate)
+                self.userLocation = location.coordinate
+                self.pathCoordinates.add(location.coordinate)
             }
             .store(in: &cancellables)
         }
