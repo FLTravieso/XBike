@@ -36,8 +36,26 @@ class RideTracker: RideTrackerProtocol {
         }
     }
 
-    func saveRide() {
-        //Implement store ride
+    func saveRide(with time: TimeInterval) async {
+        guard let startCoordinate,
+              let endCoordinate else {
+            return
+        }
+
+        let startingAddressResult = await reverseGeocoder.getAddress(for: startCoordinate.coordinate)
+        let finishingAddressResult = await reverseGeocoder.getAddress(for: endCoordinate.coordinate)
+
+        guard let startingAddress = try? startingAddressResult.get(),
+              let finishingAddress = try? finishingAddressResult.get() else {
+            return
+        }
+
+        let completedRide = CompletedRide(startingAddress: startingAddress,
+                                          finishingAddress: finishingAddress,
+                                          distance: totalDistanceInMeters,
+                                          time: time)
+
+        await saveRideUseCase.execute(with: completedRide)
     }
 
     func resetRide() {
