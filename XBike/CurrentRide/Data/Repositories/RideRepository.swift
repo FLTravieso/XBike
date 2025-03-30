@@ -28,4 +28,15 @@ class RideRepository: RidesRepositoryType {
             return .failure(.storageError)
         }
     }
+
+    func fetchRides() async -> [Ride] {
+        let descriptor = FetchDescriptor<Ride>()
+        do {
+            let rides = try context.fetch(descriptor)
+            
+            return rides
+        } catch {
+            return []
+        }
+    }
 }
