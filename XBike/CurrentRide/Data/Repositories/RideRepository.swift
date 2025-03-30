@@ -14,7 +14,8 @@ class RideRepository: RidesRepositoryType {
     }
 
     func saveRide(with completedRide: CompletedRide) async -> Result<Void, RideDomainError> {
-        let newRide = Ride(startingAddress: completedRide.startingAddress,
+        let newRide = Ride(id: completedRide.id,
+                           startingAddress: completedRide.startingAddress,
                            finishingAddress: completedRide.finishingAddress,
                            distance: completedRide.distance,
                            time: completedRide.time)
