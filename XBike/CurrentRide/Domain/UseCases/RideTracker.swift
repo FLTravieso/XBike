@@ -36,10 +36,10 @@ class RideTracker: RideTrackerProtocol {
         }
     }
 
-    func saveRide(with time: TimeInterval) async {
+    func saveRide(with time: TimeInterval) async -> Result<Void,RideDomainError> {
         guard let startCoordinate,
               let endCoordinate else {
-            return
+            return .failure(.generic)
         }
 
         let startingAddressResult = await reverseGeocoder.getAddress(for: startCoordinate.coordinate)
@@ -47,7 +47,7 @@ class RideTracker: RideTrackerProtocol {
 
         guard let startingAddress = try? startingAddressResult.get(),
               let finishingAddress = try? finishingAddressResult.get() else {
-            return
+            return .failure(.reverseGeocodeError)
         }
 
         let completedRide = CompletedRide(startingAddress: startingAddress,
@@ -55,7 +55,7 @@ class RideTracker: RideTrackerProtocol {
                                           distance: totalDistanceInMeters,
                                           time: time)
 
-        await saveRideUseCase.execute(with: completedRide)
+        return await saveRideUseCase.execute(with: completedRide)
     }
 
     func resetRide() {
