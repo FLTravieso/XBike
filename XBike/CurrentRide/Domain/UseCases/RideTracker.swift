@@ -13,8 +13,9 @@ class RideTracker: RideTrackerProtocol {
     private var lastLocation: CLLocation?
     private var totalDistanceInMeters: Double = 0
 
-    func endRide(at point: CLLocation) {
+    func endRide(at point: CLLocation) -> Double {
         endCoordinate = point
+        return totalDistanceInMeters
     }
 
     func didMoveTo(point: CLLocation) {
