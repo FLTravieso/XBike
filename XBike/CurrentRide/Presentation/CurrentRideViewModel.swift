@@ -57,8 +57,10 @@ class CurrentRideViewModel {
         rideFinished = true
     }
 
-    func saveRide() async {
-        await rideTracker.saveRide(with: timerUseCase.getElapsedTime())
+    func saveRide() {
+        Task {
+            await rideTracker.saveRide(with: timerUseCase.getElapsedTime())
+        }
     }
 
     func deleteRide() {
