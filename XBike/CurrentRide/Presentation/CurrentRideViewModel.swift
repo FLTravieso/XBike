@@ -57,6 +57,13 @@ class CurrentRideViewModel {
         rideFinished = true
     }
 
+    func deleteRide() {
+        resetTimer()
+        rideTracker.resetRide()
+        pathCoordinates.removeAllCoordinates()
+        rideFinished = false
+    }
+
     private func resetTimer() {
         stopTimer()
         timerUseCase.reset()

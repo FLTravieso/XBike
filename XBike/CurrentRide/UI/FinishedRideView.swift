@@ -92,7 +92,7 @@ struct FinishedRideView: View {
 
     @ViewBuilder private var deleteButton: some View {
         Button("Delete") {
-            // Reset ride
+            viewModel.deleteRide()
         }
         .foregroundStyle(.gray)
         .font(.title2)
