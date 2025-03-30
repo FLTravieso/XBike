@@ -15,6 +15,18 @@ class MyProgressTabFactory: CreateMyProgressTab {
     }
 
     func create() -> MyProgressTabView {
-        MyProgressTabView(viewModel: MyProgressViewModel())
+        MyProgressTabView(viewModel: createViewModel())
+    }
+
+    private func createViewModel() -> MyProgressViewModel {
+        MyProgressViewModel(fetchRidesUseCase: createFetchRidesUseCase())
+    }
+
+    private func createFetchRidesUseCase() -> FetchRidesUseCase {
+        FetchRidesUseCase(repository: createRideRepository())
+    }
+
+    private func createRideRepository() -> RideRepository {
+        RideRepository(context: context)
     }
 }
