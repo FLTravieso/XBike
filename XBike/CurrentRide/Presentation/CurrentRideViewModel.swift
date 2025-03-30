@@ -27,6 +27,7 @@ class CurrentRideViewModel {
     init(timerUseCase: TimerUseCase, locationTracker: LocationTrackerProtocol) {
         self.timerUseCase = timerUseCase
         self.locationTracker = locationTracker
+        self.locationTracker.requestUserCurrentLocation()
         observeLocationUpdates()
     }
 
@@ -80,7 +81,9 @@ class CurrentRideViewModel {
                 }
 
                 self.userLocation = location.coordinate
-                self.pathCoordinates.add(location.coordinate)
+                if isRunning {
+                    self.pathCoordinates.add(location.coordinate)
+                }
             }
             .store(in: &cancellables)
         }

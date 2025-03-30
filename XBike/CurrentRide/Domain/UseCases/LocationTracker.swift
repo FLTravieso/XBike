@@ -31,6 +31,10 @@ class LocationTrackerService: NSObject, LocationTrackerProtocol {
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
     }
+
+    func requestUserCurrentLocation() {
+        locationManager.requestLocation()
+    }
 }
 
 extension LocationTrackerService: CLLocationManagerDelegate {
@@ -38,5 +42,9 @@ extension LocationTrackerService: CLLocationManagerDelegate {
         if let location = locations.last {
             locationSubject.send(location)
         }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+        //Implement error
     }
 }

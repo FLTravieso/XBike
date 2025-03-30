@@ -11,6 +11,7 @@ import Combine
 protocol LocationTrackerProtocol {
     func startUpdatingLocation()
     func stopUpdatingLocation()
+    func requestUserCurrentLocation()
 
     var locationPublisher: AnyPublisher<CLLocation, Never> { get }
 }
