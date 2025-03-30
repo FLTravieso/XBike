@@ -31,6 +31,10 @@ struct CurrentRideTabView:View {
                 {
                     FinishedRideView(viewModel: $viewModel)
                 }
+
+                if viewModel.rideStoredSuccessfully {
+                    ProgressStoredView(rideStoredSuccessfully: $viewModel.rideStoredSuccessfully)
+                }
             }
             .navigationTitle("Current Ride")
             .navigationBarTitleDisplayMode(.inline)
