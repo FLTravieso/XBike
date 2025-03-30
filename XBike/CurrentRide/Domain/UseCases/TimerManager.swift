@@ -28,13 +28,8 @@ class TimerManager: TimerUseCase {
         isRunning = false
     }
 
-    func getElapsedTime() -> String {
-        let timePassed = isRunning ? elapsedTimeSinceStart() : elapsedTime
-        let hours = Int(timePassed) / 3600
-        let minutes = Int(timePassed) / 60
-        let seconds = Int(timePassed) % 60
-
-        return String(format: "%02d : %02d : %02d", hours, minutes, seconds)
+    func getElapsedTime() -> TimeInterval {
+        return isRunning ? elapsedTimeSinceStart() : elapsedTime
     }
 
     private func updateTime() {

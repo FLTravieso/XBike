@@ -57,8 +57,8 @@ class CurrentRideViewModel {
         rideFinished = true
     }
 
-    func saveRide() {
-        rideTracker.saveRide()
+    func saveRide() async {
+        await rideTracker.saveRide(with: timerUseCase.getElapsedTime())
     }
 
     func deleteRide() {
@@ -94,8 +94,13 @@ class CurrentRideViewModel {
     }
 
     private func updateFormattedTime() {
+        let timePassed = timerUseCase.getElapsedTime()
+        let hours = Int(timePassed) / 3600
+        let minutes = Int(timePassed) / 60
+        let seconds = Int(timePassed) % 60
+
         Task { @MainActor in
-            formattedTime = timerUseCase.getElapsedTime()
+            formattedTime = String(format: "%02d : %02d : %02d", hours, minutes, seconds)
         }
     }
 
