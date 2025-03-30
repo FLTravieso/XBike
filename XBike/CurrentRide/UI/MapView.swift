@@ -12,9 +12,9 @@ struct MapView: UIViewRepresentable {
     let mapView = GMSMapView()
 
     func makeUIView(context: Context) -> GMSMapView {
-        mapView.camera = GMSCameraPosition.camera(withLatitude: -34.6037,
-                                                  longitude: -58.3816,
-                                                  zoom: 15.0)
+        mapView.camera = GMSCameraPosition.camera(withLatitude: Constants.Map.defaultLatitude,
+                                                  longitude: Constants.Map.defaultLongitude,
+                                                  zoom: Constants.Map.defaultZoom)
 
         return mapView
     }
