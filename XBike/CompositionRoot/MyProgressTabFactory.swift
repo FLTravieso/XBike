@@ -7,6 +7,6 @@
 
 class MyProgressTabFactory: CreateMyProgressTab {
     func create() -> MyProgressTabView {
-        MyProgressTabView()
+        MyProgressTabView(viewModel: MyProgressViewModel())
     }
 }

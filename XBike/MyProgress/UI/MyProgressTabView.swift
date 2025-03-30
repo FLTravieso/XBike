@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct MyProgressTabView: View {
+    @State var viewModel: MyProgressViewModel
+
+    init(viewModel: MyProgressViewModel) {
+        self.viewModel = viewModel
+    }
+
     var body: some View {
         NavigationStack {
             
