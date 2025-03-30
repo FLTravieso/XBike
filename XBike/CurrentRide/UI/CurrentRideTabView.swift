@@ -22,7 +22,8 @@ struct CurrentRideTabView:View {
                 MapView(userLocation: $viewModel.userLocation, userPath: $viewModel.pathCoordinates)
 
                 if showTrackingView,
-                   !viewModel.rideFinished
+                   !viewModel.rideFinished,
+                   !viewModel.rideStoredSuccessfully
                 {
                     TrackingView(viewModel: $viewModel)
                 }

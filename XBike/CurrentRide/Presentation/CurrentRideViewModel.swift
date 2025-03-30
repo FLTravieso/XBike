@@ -64,7 +64,10 @@ class CurrentRideViewModel {
             let result = await rideTracker.saveRide(with: time)
 
             if case .success(_) = result {
-                rideStoredSuccessfully = true
+                Task { @MainActor in
+                    deleteRide()
+                    rideStoredSuccessfully = true
+                }
             }
         }
     }
