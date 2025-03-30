@@ -7,26 +7,44 @@
 
 import Foundation
 import SwiftUI
+import Combine
+import CoreLocation
 
 @Observable
 class CurrentRideViewModel {
     var formattedTime: String = "00 : 00 : 00"
     var isRunning = false
+    var userLocation: CLLocation?
+    var pathCoordinates: [CLLocationCoordinate2D] = []
 
     private let timerUseCase: TimerUseCase
     private var timer: Timer?
+    private var cancellables = Set<AnyCancellable>()
+    private let locationTracker: LocationTrackerProtocol
 
-    init(timerUseCase: TimerUseCase) {
+    init(timerUseCase: TimerUseCase, locationTracker: LocationTrackerProtocol) {
         self.timerUseCase = timerUseCase
+        self.locationTracker = locationTracker
+        observeLocationUpdates()
     }
 
-    func resetTimer() {
+    func startRide() {
+        startTimer()
+        startTracking()
+    }
+
+    func stopRide() {
+        stopTimer()
+        stopTracking()
+    }
+
+    private func resetTimer() {
         stopTimer()
         timerUseCase.reset()
         updateFormattedTime()
     }
 
-    func startTimer() {
+    private func startTimer() {
         isRunning = true
         timerUseCase.start()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
@@ -38,7 +56,7 @@ class CurrentRideViewModel {
         }
     }
 
-    func stopTimer() {
+    private func stopTimer() {
         isRunning = false
         timerUseCase.stop()
         timer?.invalidate()
@@ -51,4 +69,25 @@ class CurrentRideViewModel {
         }
     }
 
+    private func observeLocationUpdates() {
+        locationTracker.locationPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] location in
+                guard let self else {
+                    return
+                }
+
+                self.userLocation = location
+                self.pathCoordinates.append(location.coordinate)
+            }
+            .store(in: &cancellables)
+        }
+
+    private func startTracking() {
+        locationTracker.startUpdatingLocation()
+    }
+
+    private func stopTracking() {
+        locationTracker.stopUpdatingLocation()
+    }
 }

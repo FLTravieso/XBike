@@ -9,7 +9,7 @@ import CoreLocation
 import Combine
 
 @Observable
-class LocationService: NSObject, LocationServiceProtocol, CLLocationManagerDelegate {
+class LocationTrackerService: NSObject, LocationTrackerProtocol, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     private let locationSubject = PassthroughSubject<CLLocation, Never>()
 

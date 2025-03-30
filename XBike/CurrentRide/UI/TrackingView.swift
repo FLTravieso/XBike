@@ -60,7 +60,7 @@ struct TrackingView: View {
 
     @ViewBuilder private var startButton: some View {
         Button("Start") {
-            viewModel.startTimer()
+            viewModel.startRide()
         }
         .foregroundStyle(viewModel.isRunning ? .gray: .orange)
         .font(.title2)
@@ -69,7 +69,7 @@ struct TrackingView: View {
 
     @ViewBuilder private var stopButton: some View {
         Button("Stop") {
-            viewModel.stopTimer()
+            viewModel.stopRide()
         }
         .foregroundStyle(viewModel.isRunning ? .orange: .gray)
         .font(.title2)
