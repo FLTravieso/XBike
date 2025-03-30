@@ -17,6 +17,7 @@ class CurrentRideViewModel {
     var formattedDistance: String = "0.0 km"
     var isRunning = false
     var rideFinished = false
+    var rideStoredSuccessfully = false
     var userLocation = CLLocationCoordinate2D(latitude: Constants.Map.defaultLatitude,
                                               longitude: Constants.Map.defaultLongitude)
     var pathCoordinates = GMSMutablePath()
@@ -57,6 +58,20 @@ class CurrentRideViewModel {
         rideFinished = true
     }
 
+    func saveRide() {
+        let time = timerUseCase.getElapsedTime()
+        Task {
+            let result = await rideTracker.saveRide(with: time)
+
+            if case .success(_) = result {
+                Task { @MainActor in
+                    deleteRide()
+                    rideStoredSuccessfully = true
+                }
+            }
+        }
+    }
+
     func deleteRide() {
         resetTimer()
         rideTracker.resetRide()
@@ -90,8 +105,13 @@ class CurrentRideViewModel {
     }
 
     private func updateFormattedTime() {
+        let timePassed = timerUseCase.getElapsedTime()
+        let hours = Int(timePassed) / 3600
+        let minutes = Int(timePassed) / 60
+        let seconds = Int(timePassed) % 60
+
         Task { @MainActor in
-            formattedTime = timerUseCase.getElapsedTime()
+            formattedTime = String(format: "%02d : %02d : %02d", hours, minutes, seconds)
         }
     }
 

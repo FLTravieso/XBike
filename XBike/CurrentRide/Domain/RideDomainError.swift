@@ -7,4 +7,6 @@
 
 enum RideDomainError: Error {
     case generic
+    case storageError
+    case reverseGeocodeError
 }

@@ -19,10 +19,10 @@ class ReverseGeocodeRepository: ReverseGeocoderRepositoryProtocol {
             if let address = address.first?.name {
                 return .success(address)
             } else {
-                return .failure(.generic)
+                return .failure(.reverseGeocodeError)
             }
         } catch {
-            return .failure(.generic)
+            return .failure(.reverseGeocodeError)
         }
     }
 }

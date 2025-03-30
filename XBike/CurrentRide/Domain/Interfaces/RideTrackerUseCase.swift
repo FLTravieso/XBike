@@ -10,6 +10,6 @@ import CoreLocation
 protocol RideTrackerProtocol {
     func endRide(at point: CLLocation) -> Double
     func didMoveTo(point: CLLocation)
-    func saveRide()
+    func saveRide(with time: TimeInterval) async -> Result<Void,RideDomainError>
     func resetRide()
 }
