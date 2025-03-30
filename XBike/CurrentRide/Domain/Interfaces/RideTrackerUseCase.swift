@@ -8,7 +8,7 @@
 import CoreLocation
 
 protocol RideTrackerProtocol {
-    func endRide(at point: CLLocation)
+    func endRide(at point: CLLocation) -> Double
     func didMoveTo(point: CLLocation)
     func saveRide()
     func resetRide()

@@ -21,8 +21,15 @@ struct CurrentRideTabView:View {
             ZStack {
                 MapView(userLocation: $viewModel.userLocation, userPath: $viewModel.pathCoordinates)
 
-                if showTrackingView {
+                if showTrackingView,
+                   !viewModel.rideFinished
+                {
                     TrackingView(viewModel: $viewModel)
+                }
+
+                if viewModel.rideFinished
+                {
+                    FinishedRideView(viewModel: $viewModel)
                 }
             }
             .navigationTitle("Current Ride")

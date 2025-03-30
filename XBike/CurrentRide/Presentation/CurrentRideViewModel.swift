@@ -14,7 +14,9 @@ import GoogleMaps
 @Observable
 class CurrentRideViewModel {
     var formattedTime: String = "00 : 00 : 00"
+    var formattedDistance: String = "0.0 km"
     var isRunning = false
+    var rideFinished = false
     var userLocation = CLLocationCoordinate2D(latitude: Constants.Map.defaultLatitude,
                                               longitude: Constants.Map.defaultLongitude)
     var pathCoordinates = GMSMutablePath()
@@ -47,8 +49,12 @@ class CurrentRideViewModel {
     func stopRide() {
         stopTimer()
         stopTracking()
-        rideTracker.endRide(at: CLLocation(latitude: userLocation.latitude,
+        let distance = rideTracker.endRide(at: CLLocation(latitude: userLocation.latitude,
                                            longitude: userLocation.longitude))
+
+        updateFormattedDistance(with: distance)
+        isRunning = false
+        rideFinished = true
     }
 
     private func resetTimer() {
@@ -105,5 +111,13 @@ class CurrentRideViewModel {
 
     private func stopTracking() {
         locationTracker.stopUpdatingLocation()
+    }
+
+    private func updateFormattedDistance(with distanceInMeters: Double) {
+        let distanceInKm = distanceInMeters / 1000.0
+
+        Task { @MainActor in
+            formattedDistance = String(format: "%.2f km", distanceInKm)
+        }
     }
 }
