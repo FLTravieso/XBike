@@ -13,6 +13,15 @@ class RideTracker: RideTrackerProtocol {
     private var lastLocation: CLLocation?
     private var totalDistanceInMeters: Double = 0
 
+    private let reverseGeocoder: ReverseGeocoderRepositoryProtocol
+    private let saveRideUseCase: SaveRideUseCase
+
+    init(reverseGeocoder: ReverseGeocoderRepositoryProtocol,
+         saveRideUseCase: SaveRideUseCase) {
+        self.reverseGeocoder = reverseGeocoder
+        self.saveRideUseCase = saveRideUseCase
+    }
+
     func endRide(at point: CLLocation) -> Double {
         endCoordinate = point
         return totalDistanceInMeters
