@@ -19,14 +19,22 @@ class CurrentRideViewModel {
                                               longitude: Constants.Map.defaultLongitude)
     var pathCoordinates = GMSMutablePath()
 
-    private let timerUseCase: TimerUseCase
     private var timer: Timer?
     private var cancellables = Set<AnyCancellable>()
-    private let locationTracker: LocationTrackerProtocol
 
-    init(timerUseCase: TimerUseCase, locationTracker: LocationTrackerProtocol) {
+    private let timerUseCase: TimerUseCase
+    private let locationTracker: LocationTrackerProtocol
+    private let rideTracker: RideTrackerProtocol
+
+    init(timerUseCase: TimerUseCase,
+         locationTracker: LocationTrackerProtocol,
+         rideTracker: RideTrackerProtocol
+        )
+    {
         self.timerUseCase = timerUseCase
         self.locationTracker = locationTracker
+        self.rideTracker = rideTracker
+
         self.locationTracker.requestUserCurrentLocation()
         observeLocationUpdates()
     }
