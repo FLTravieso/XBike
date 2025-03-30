@@ -12,7 +12,7 @@ class SaveRideUseCase {
         self.repository = repository
     }
     
-    func execute() async -> Result<Void,RideDomainError> {
-        return await repository.saveRide()
+    func execute(with completedRide: CompletedRide) async -> Result<Void,RideDomainError> {
+        return await repository.saveRide(with: completedRide)
     }
 }
