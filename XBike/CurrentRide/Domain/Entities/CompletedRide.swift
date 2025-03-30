@@ -7,6 +7,7 @@
 import Foundation
 
 struct CompletedRide {
+    let id = UUID()
     var startingAddress: String
     var finishingAddress: String
     var distance: Double
