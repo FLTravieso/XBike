@@ -16,7 +16,7 @@ struct MyProgressTabView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
+            ScrollView {
                 ForEach(viewModel.rides) { ride in
                     RideListItemView(rideItem: ride)
                 }
