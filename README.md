@@ -21,7 +21,7 @@ cd XBike
 
 ### **2️⃣ Open in Xcode**
 - Open `XBike.xcodeproj` in **Xcode 16+**.
-- Set your development team for code signing.
+- Optional: Set your development team for code signing (if you do this you'll need to create a new GMpas API key).
 
 ### **3️⃣ Enable Background Modes**
 - **Xcode → Signing & Capabilities** → Enable:
@@ -42,8 +42,9 @@ cd XBike
 2. Allow always location tracking.
 
 ### **Start a Ride**
-1. Tap `Start` to begin tracking.
-2. Move around to record distance.
+1. Tap the `+` button in the navigation bar.
+2. Tap `Start` to begin tracking.
+3. Move around to record distance.
 **(If running in iOS Simulator go to Debug → Location and select: City Bicycle Ride, City Run or Freeway Drive before tapping start).**
 
 ### **End a Ride**
