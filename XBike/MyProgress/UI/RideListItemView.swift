@@ -10,27 +10,33 @@ struct RideListItemView: View {
     let rideItem: RideItem
     
     var body: some View {
-        HStack(alignment: .center) {
-            VStack(alignment: .leading) {
-                Text(rideItem.time)
-                    .font(.largeTitle)
+        VStack {
+            HStack(alignment: .top) {
+                VStack(alignment: .leading) {
+                    Text(rideItem.time)
+                        .font(.largeTitle)
+                        .foregroundStyle(.black)
+                    
+                    Text(rideItem.startingPlace)
+                        .font(.title2)
+                        .foregroundStyle(.gray)
+                    
+                    Text(rideItem.finishingPlace)
+                        .font(.title2)
+                        .foregroundStyle(.gray)
+                }
+                
+                Spacer()
+
+                Text(rideItem.distance)
+                    .font(.title)
                     .foregroundStyle(.black)
-
-                Text(rideItem.startingPlace)
-                    .font(.title2)
-                    .foregroundStyle(.gray)
-
-                Text(rideItem.finishingPlace)
-                    .font(.title2)
-                    .foregroundStyle(.gray)
             }
+            .padding(20)
 
-            Spacer()
-
-            Text(rideItem.distance)
-                .font(.title)
-                .foregroundStyle(.black)
+            Rectangle()
+                .fill(.gray)
+                .frame(height: 2)
         }
-        .padding(20)
     }
 }

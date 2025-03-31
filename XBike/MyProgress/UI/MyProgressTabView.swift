@@ -16,10 +16,16 @@ struct MyProgressTabView: View {
 
     var body: some View {
         NavigationStack {
-            
+            VStack {
+                ForEach(viewModel.rides) { ride in
+                    RideListItemView(rideItem: ride)
+                }
+            }
+            .navigationTitle("My Progress")
+            .navigationBarTitleDisplayMode(.inline)
+
+            Spacer()
         }
-        .navigationTitle("My Progress")
-        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             viewModel.onAppear()
         }
