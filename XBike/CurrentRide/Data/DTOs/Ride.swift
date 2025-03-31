@@ -10,12 +10,14 @@ import Foundation
 
 @Model
 class Ride {
+    var id: UUID
     var startingAddress: String
     var finishingAddress: String
     var distance: Double
     var time: TimeInterval
 
-    init(startingAddress: String, finishingAddress: String, distance: Double, time: TimeInterval) {
+    init(id: UUID, startingAddress: String, finishingAddress: String, distance: Double, time: TimeInterval) {
+        self.id = id
         self.startingAddress = startingAddress
         self.finishingAddress = finishingAddress
         self.distance = distance

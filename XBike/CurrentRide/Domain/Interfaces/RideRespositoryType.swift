@@ -7,4 +7,5 @@
 
 protocol RidesRepositoryType {
     func saveRide(with ride: CompletedRide) async -> Result<Void,RideDomainError>
+    func fetchRides() async -> [Ride]
 }

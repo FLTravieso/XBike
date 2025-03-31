@@ -12,6 +12,18 @@ import GoogleMaps
 @main
 struct XBikeApp: App {
     @StateObject private var appSettings = AppSettings()
+
+    var sharedModelContext: ModelContext = {
+        let schema = Schema([
+            Ride.self,
+        ])
+
+        guard let container = try? ModelContainer(for: schema) else {
+            fatalError("Could not create ModelContainer")
+        }
+        
+        return ModelContext(container)
+    }()
     
     init() {
         // Usually would create a config file that is not persisted in the repo or cloud
@@ -28,7 +40,8 @@ struct XBikeApp: App {
             }
             else
             {
-                MainTabView(createCurrentRideTabView: CurrentRideTabFactory())
+                MainTabView(createCurrentRideTabView: CurrentRideTabFactory(context: sharedModelContext),
+                            createMyProgressTabView: MyProgressTabFactory(context: sharedModelContext))
             }
         }
     }

@@ -9,9 +9,14 @@ import SwiftUI
 
 struct MainTabView: View {
     private let createCurrentRideTabView: CreateCurrentRideTab
+    private let createMyProgressTabView: CreateMyProgressTab
 
-    init(createCurrentRideTabView: CreateCurrentRideTab) {
+    init(createCurrentRideTabView: CreateCurrentRideTab,
+         createMyProgressTabView: CreateMyProgressTab
+    )
+    {
         self.createCurrentRideTabView = createCurrentRideTabView
+        self.createMyProgressTabView = createMyProgressTabView
 
         //Appearance
         let appearance = UINavigationBarAppearance()
@@ -34,7 +39,7 @@ struct MainTabView: View {
                     Text("Current Ride")
                 }
 
-            Text("Tab 2")
+            createMyProgressTabView.create()
                 .tabItem {
                     Image(systemName: "gauge")
                     Text("My Progress")

@@ -7,6 +7,12 @@
 import SwiftData
 
 class CurrentRideTabFactory: CreateCurrentRideTab {
+    let context: ModelContext
+
+    init(context: ModelContext) {
+        self.context = context
+    }
+
     func create() -> CurrentRideTabView {
         CurrentRideTabView(viewModel: createViewModel())
     }
@@ -27,18 +33,6 @@ class CurrentRideTabFactory: CreateCurrentRideTab {
     }
 
     private func createRidesRepository() -> RidesRepositoryType {
-        RideRepository(context: createModelContext())
-    }
-
-    private func createModelContext() -> ModelContext {
-        let schema = Schema([
-            Ride.self,
-        ])
-
-        guard let container = try? ModelContainer(for: schema) else {
-            fatalError("Could not create ModelContainer")
-        }
-        
-        return ModelContext(container)
+        RideRepository(context: context)
     }
 }
