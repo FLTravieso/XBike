@@ -20,5 +20,8 @@ struct MyProgressTabView: View {
         }
         .navigationTitle("My Progress")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            viewModel.onAppear()
+        }
     }
 }
